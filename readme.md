@@ -8,8 +8,6 @@
 - python3 server.py
 - deactivate
 
-- Gain access to bqd_shared_utils repo (Pieka)
-- Git clone bqd_shared_utils into root folder
 - Get access to .env file and firebase credentials json file (admin)
 - copy both files into the root folder
 
@@ -19,7 +17,7 @@
 
 ## HOW TO RUN APPLICATION
 
-- python server.py
+- uvicorn main:app --reload
 
 # status codes
 
