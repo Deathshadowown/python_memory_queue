@@ -19,6 +19,25 @@
 
 - uvicorn main:app --reload
 
+## How to run with server workers
+
+- export PYTHONPATH=/mnt/c/project/name_of_project/venv/lib/python3.10/site-packages
+- gunicorn -w 4 -k "uvicorn.workers.UvicornWorker" main:app --bind 0.0.0.0:8000
+
+## How to test if working run in terminal
+
+for i in {1..50}; do
+  curl -X 'POST' \
+    "http://127.0.0.1:8000/enqueue/?item=task_$i" \
+    -H 'accept: application/json' \
+    -d ''
+done
+
+## How to kill server workers
+
+- lsof -i :8000
+- kill -9 PID
+
 # status codes
 
 - 400 Bad Request: The server cannot understand the request due to a client error, such as malformed request syntax, invalid request message framing, or deceptive request routing.
@@ -38,7 +57,7 @@
 - 201 Created: The request has been fulfilled, resulting in the creation of a new resource. This status code is often used for successful POST requests that create new items.
 
 pip install gunicorn
-export PYTHONPATH=/mnt/c/project/new_ithemba_project_2025/venv/lib/python3.10/site-packages
+export PYTHONPATH=/mnt/c/project/name_of_project/venv/lib/python3.10/site-packages
 
 gunicorn -w 4 -k "uvicorn.workers.UvicornWorker" main:app --bind 0.0.0.0:8000
 
